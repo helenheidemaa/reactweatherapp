@@ -1,8 +1,29 @@
-import React from 'react';
+import React,{useState} from 'react';
 import './Weather.css';
+import axios from 'axios';
 
-export default function Weather (){
-    return(
+export default function Weather (props){
+    let[weatherData, setWeatherData] =useState({ready: false});
+ 
+    function handleResponse(response){
+       console.log(response.data);
+
+       setWeatherData({
+        ready:true,
+        temperature: response.data.main.temperature,
+        wind: response.data.wind.speed,
+        date: 'Wednesday 07:00',
+        city: response.data.name,
+        description: response.data.weather[0].description,
+        humidity: response.data.main.humidity,
+        iconUrl: 'Hello'
+       });
+     
+  
+    }
+
+ if (weatherData.ready){
+ return(
         <div className='Weather'>
             <form>
             <div className='row'>
@@ -22,39 +43,47 @@ export default function Weather (){
             </div>
                 </div>
              </form>
-            <h1> New York</h1>
+            <h1> {weatherData.city}</h1>
             <ul>
-                <li> Wednesday 07:00</li>
-                <li>  Mostly Cloudy </li>
+                <li> {weatherData.date}</li>
+                <li className='text-capitalize'>  {weatherData.description} </li>
             </ul>
 <div className='row mt-3'>
 <div className='col-6'>
     <div className='clearfix'>
      
 <img 
-src="https://www.google.com/imgres?imgurl=https%3A%2F%2Fstatic.vecteezy.com%2Fsystem%2Fresources%2Fpreviews%2F000%2F550%2F828%2Foriginal%2Fsun-icon-vector.jpg&tbnid=kedxNKCGh3zGKM&vet=12ahUKEwj5k-2ztYT-AhUByioKHdCeCEYQMygAegUIARC5AQ..i&imgrefurl=https%3A%2F%2Fwww.vecteezy.com%2Ffree-vector%2Fsun-icon&docid=z0Z0r3nxJfPm6M&w=5000&h=5000&q=sun%20icon&ved=2ahUKEwj5k-2ztYT-AhUByioKHdCeCEYQMygAegUIARC5AQ" 
-alt="Sunny"
+src={weatherData.iconUrl} 
+alt={weatherData.description} 
 className='float-left'>   
 
 </img>
 <div className='float-left'>
 
 
-<span className='temperature'> 7</span>
+<span className='temperature'> {Math.round(weatherData.city)}</span>
 <span className='unit'> °C</span>
 </div>
 </div>  
 </div>
 <div className='col-6'>
 <ul>
-    <li> Humidity: 72 </li>
-    <li> Wind: 13 km/h</li>
+    <li> {weatherData.humidity} </li>
+    <li> {weatherData.wind}</li>
 </ul>
 
 </div>
 </div>
 
         </div>
-    )
+    );
+    } else{
 
+    let apiKey = '5293d8454b519c30f6f6331f38c85b4c';
+    let apiUrl= `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultcity}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
+
+    return 'Loading...'
+
+    }
 }
