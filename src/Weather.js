@@ -1,25 +1,25 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import './Weather.css';
 import axios from 'axios';
 
 export default function Weather (props){
-    let[weatherData, setWeatherData] =useState({ready: false});
+    let[weatherData, setWeatherData] = useState({ready: false});
+
  
     function handleResponse(response){
        console.log(response.data);
 
        setWeatherData({
         ready:true,
-        temperature: response.data.main.temperature,
+        temperature: response.data.main.temp,
         wind: response.data.wind.speed,
         date: 'Wednesday 07:00',
         city: response.data.name,
         description: response.data.weather[0].description,
         humidity: response.data.main.humidity,
-        iconUrl: 'Hello'
+        iconUrl: 'Hello',
        });
-     
-  
+      
     }
 
  if (weatherData.ready){
@@ -61,15 +61,15 @@ className='float-left'>
 <div className='float-left'>
 
 
-<span className='temperature'> {Math.round(weatherData.city)}</span>
+<span className='temperature'> {Math.round(weatherData.temperature)}</span>
 <span className='unit'> °C</span>
 </div>
 </div>  
 </div>
 <div className='col-6'>
 <ul>
-    <li> {weatherData.humidity} </li>
-    <li> {weatherData.wind}</li>
+    <li> Humidity: {Math.round(weatherData.humidity)}% </li>
+    <li> Wind speed: {Math.round(weatherData.wind)}m/s </li>
 </ul>
 
 </div>
@@ -80,7 +80,7 @@ className='float-left'>
     } else{
 
     let apiKey = '5293d8454b519c30f6f6331f38c85b4c';
-    let apiUrl= `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultcity}&appid=${apiKey}&units=metric`;
+    let apiUrl= `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
 
     return 'Loading...'

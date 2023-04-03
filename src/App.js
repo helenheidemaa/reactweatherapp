@@ -7,7 +7,7 @@ export default function App() {
   return (
     <div className="App">
       <div className= "container">   
-      <Weather defaultcity='New York' />
+      <Weather defaultCity ='Tallinn' />
      <footer>
       This app was coded by Helen Heidemaa and is{" "} 
      <a href= "https://github.com/helenheidemaa/reactweatherapp" 
