@@ -17,7 +17,7 @@ function day(){
     let date = new Date (props.date.dt*1000);
     let day=date.getDay();
     let days =['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
-    return days;
+    return days(day);
 }
 
     return(
