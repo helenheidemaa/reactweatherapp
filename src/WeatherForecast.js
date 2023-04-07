@@ -1,8 +1,20 @@
 import React from 'react';
+import WeatherIcon from './WeatherIcon';
+import './WeatherForecast.css';
 
-
-export default function(){
+export default function  WeatherForecast(){
     return(
-        "Hello"
+        <div className='WeatherForecast'>
+<div className='row'>
+<div className='col'>
+    <div className='WeatherForecast-day'>Thu</div>
+    <WeatherIcon code="01d" size= {30}/>
+    <div className='WeatherForecast-temperature'> 
+        <span className='WeatherForecast-temperature-max'>10°C|</span>
+        <span className='WeatherForecast-temperature-min'>19°C </span>
+    </div>
+</div>
+</div>
+</div>
     )
 }
