@@ -11,6 +11,8 @@ export default function App() {
      <footer>
       This app was coded by Helen Heidemaa and is{" "} 
      <a href= 'https://github.com/helenheidemaa/reactweatherapp' 
+     target="_blank"
+    rel="noopener noreferrer"
      >open-sourced on GidHub
    </a>
     </footer>
