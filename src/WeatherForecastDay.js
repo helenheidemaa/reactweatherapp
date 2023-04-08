@@ -14,9 +14,10 @@ function minTemperature(){
 }
 
 function day(){
-    let date = new Date (props.date.dt * 1000);
+  let date = new Date (props.date* 1000);
     let day=date.getDay();
     let days =['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
+
     return days[day];
 }
 
