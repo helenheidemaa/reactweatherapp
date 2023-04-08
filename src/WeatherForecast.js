@@ -29,7 +29,9 @@ if (index <6){
             <WeatherForecastDay data={dailyForecast} />
            </div>
                 );
-}             
+}  else{
+    return null
+}           
             })}
            </div>
       </div>
