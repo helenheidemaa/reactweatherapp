@@ -13,13 +13,14 @@ function minTemperature(){
     return `${temperature} °C`;
 }
 
-function day(){
-  let date = new Date (props.date* 1000);
-    let day=date.getDay();
-    let days =['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
+  function day() {
+    let date = new Date(props.data.dt * 1000);
+    let day = date.getDay();
+
+    let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
     return days[day];
-}
+  }
 
   return (
     <div>
